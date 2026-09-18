@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Conheça o Instituto Vidas da Vila Aparecida: reforço escolar, esporte e apoio a famílias na comunidade, e veja como se tornar voluntário."
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Instituto Vidas da Vila Aparecida | Início</title>
+  </head>
+  <body>
+    <!--
+      Skip link: fica invisível até receber foco de teclado (Tab).
+      Permite pular a navegação repetida e ir direto ao conteúdo,
+      sem precisar tabular por todos os links do header antes.
+    -->
+    <a class="pular-para-conteudo" href="#conteudo-principal"
+      >Pular para o conteúdo</a
+    >
+
+    <header>
+      <div class="cabecalho-marca">
+        <!--
+          alt="" é proposital, não um esquecimento: a logo aqui é
+          decorativa/redundante, já que o nome da ONG existe como
+          texto visível no h1 logo ao lado. O link em si já tem seu
+          nome acessível vindo do aria-label, então dar alt no <img>
+          faria o leitor de tela anunciar o mesmo nome duas vezes.
+        -->
+        <a
+          href="index.html"
+          class="link-logo"
+          aria-label="Instituto Vidas da Vila Aparecida — página inicial"
+        >
+          <img src="assets/images/logo.png" alt="" width="320" height="168" />
+        </a>
+        <h1>Instituto Vidas da Vila Aparecida</h1>
+      </div>
+      <nav aria-label="Navegação principal">
+        <ul>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="projetos.html">Projetos</a></li>
+          <li><a href="cadastro.html">Cadastro</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="conteudo-principal">
+      <section aria-labelledby="titulo-quem-somos">
+        <h2 id="titulo-quem-somos">Quem nós somos</h2>
+        <figure>
+          <img
+            src="assets/images/cestas-solidarias.png"
+            alt="Voluntários de camiseta preta entregando cestas básicas a moradores em uma mesa ao ar livre, com a fachada pintada 'Vila Aparecida, Florianópolis - SC' ao fundo"
+            width="1200"
+            height="800"
+            loading="lazy"
+          />
+          <figcaption>
+            Entrega de cestas básicas na Vila Aparecida, um dos momentos do
+            nosso projeto Cestas Solidárias.
+          </figcaption>
+        </figure>
+        <p>
+          Há 8 anos, o Instituto Vidas da Vila Aparecida atua dentro da própria
+          comunidade, oferecendo reforço escolar, atividades esportivas e apoio
+          a famílias em situação de vulnerabilidade. Tudo o que fazemos nasce de
+          quem mora e conhece as necessidades daqui.
+        </p>
+      </section>
+
+      <section aria-labelledby="titulo-missao">
+        <h2 id="titulo-missao">Nossa Missão</h2>
+        <p>
+          Acreditamos que educação e pertencimento comunitário transformam
+          trajetórias. Por isso, oferecemos reforço escolar gratuito, um time de
+          futebol para crianças e adolescentes, e distribuição mensal de cestas
+          básicas para famílias cadastradas.
+        </p>
+      </section>
+
+      <section aria-labelledby="titulo-contato">
+        <h2 id="titulo-contato">Contato</h2>
+        <!--
+          <address> é o elemento semântico correto para dados de
+          contato (não é sobre "endereço postal" apenas — cobre
+          e-mail, telefone etc). Navegadores aplicam itálico por
+          padrão nele; removemos isso no CSS (font-style: normal).
+        -->
+        <address>
+          <p>
+            E-mail:
+            <a href="mailto:contato@vidasvilaaparecida.org.br"
+              >contato@vidasvilaaparecida.org.br</a
+            >
+          </p>
+          <p>
+            Telefone:
+            <a href="tel:+5548999999999">(48) 99999-9999</a>
+          </p>
+          <p>
+            Endereço: Rua da Fonte, 000 — Vila Aparecida, Florianópolis - SC
+          </p>
+        </address>
+      </section>
+
+      <section aria-labelledby="titulo-depoimentos">
+        <h2 id="titulo-depoimentos">Depoimentos</h2>
+
+        <article>
+          <h3 class="visualmente-oculto">Depoimento de Maria das Graças</h3>
+          <blockquote>
+            <p>
+              Antes do reforço escolar, meu filho ficava sozinho em casa
+              enquanto eu trabalhava. Hoje ele estuda, faz amigos e participa do
+              time de futebol. Isso mudou a rotina da nossa família inteira.
+            </p>
+          </blockquote>
+          <footer class="rodape-depoimento">
+            <p>Maria das Graças, moradora da Vila Aparecida</p>
+          </footer>
+        </article>
+
+        <article>
+          <h3 class="visualmente-oculto">Depoimento de Rafael Andrade</h3>
+          <blockquote>
+            <p>
+              Fui voluntário por seis meses dando aula de reforço aos sábados. O
+              que mais me marcou foi ver o quanto uma tarde de atenção muda o
+              jeito de uma criança encarar a escola.
+            </p>
+          </blockquote>
+          <footer class="rodape-depoimento">
+            <p>Rafael Andrade, ex-voluntário</p>
+          </footer>
+        </article>
+      </section>
+    </main>
+
+    <footer class="rodape-pagina">
+      <p>
+        &copy; 2026 Instituto Vidas da Vila Aparecida. Todos os direitos
+        reservados.
+      </p>
+    </footer>
+  </body>
+</html>

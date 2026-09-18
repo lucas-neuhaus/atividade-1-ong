@@ -1,0 +1,269 @@
+/* ---------- Reset básico ---------- */
+* {
+  box-sizing: border-box;
+}
+
+/* ---------- Utilitário de acessibilidade ---------- */
+/* Esconde visualmente mas mantém legível por leitores de tela.
+   Usado para headings que dão contexto a articles/seções para
+   quem navega por AT, sem repetir informação visualmente redundante. */
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  color: #1a1a1a;
+  background-color: #fafafa;
+}
+
+/* ---------- Skip link (acessibilidade de teclado) ---------- */
+.pular-para-conteudo {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  z-index: 100;
+}
+
+.pular-para-conteudo:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+/* ---------- Foco visível em qualquer elemento interativo ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #1a5fb4;
+  outline-offset: 2px;
+}
+
+/* ---------- Header / navegação ---------- */
+header {
+  background-color: #2e2e2e;
+  color: #fff;
+  padding: 1.5rem 1rem;
+}
+
+.cabecalho-marca {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.link-logo {
+  display: block;
+  flex-shrink: 0;
+}
+
+.link-logo img {
+  display: block;
+  height: 3rem;
+  width: auto;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+nav a[aria-current="page"] {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* ---------- Conteúdo principal ---------- */
+main {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+section {
+  margin-bottom: 2.5rem;
+}
+
+article {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* ---------- Imagens e figuras ---------- */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+figure {
+  margin: 0 0 1rem;
+}
+
+figcaption {
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 0.5rem;
+}
+
+/* ---------- Dados de contato ---------- */
+address {
+  font-style: normal;
+}
+
+address p {
+  margin: 0 0 0.5rem;
+}
+
+address a {
+  color: #1a5fb4;
+}
+
+/* ---------- Formulário ---------- */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 30rem;
+}
+
+fieldset {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+legend {
+  font-weight: bold;
+  padding: 0 0.5rem;
+}
+
+.campo-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+select,
+textarea {
+  padding: 0.6rem;
+  border: 1px solid #999;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+input[aria-invalid="true"],
+select[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+  border-color: #c01c28;
+}
+
+.dica-formato {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 6rem;
+}
+
+button {
+  align-self: flex-start;
+  background-color: #1a5fb4;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #144a8f;
+}
+
+/* ---------- Listas de definição (ex: formas de doação) ---------- */
+dl {
+  margin: 0;
+}
+
+dt {
+  font-weight: bold;
+  margin-top: 0.75rem;
+}
+
+dt:first-child {
+  margin-top: 0;
+}
+
+dd {
+  margin: 0.25rem 0 0;
+  color: #555;
+}
+
+/* ---------- Footer ---------- */
+.rodape-pagina {
+  background-color: #2e2e2e;
+  color: #ccc;
+  text-align: center;
+  padding: 1rem;
+}
+
+.rodape-depoimento {
+  font-style: italic;
+  color: #555;
+}
+
+/* ---------- Respeita preferência de redução de movimento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
