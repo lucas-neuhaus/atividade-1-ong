@@ -11,7 +11,9 @@
     <title>Instituto Vidas da Vila Aparecida | Cadastro de Voluntários</title>
   </head>
   <body>
-    <a class="pular-para-conteudo" href="#conteudo-principal">Pular para o conteúdo</a>
+    <a class="pular-para-conteudo" href="#conteudo-principal"
+      >Pular para o conteúdo</a
+    >
 
     <header>
       <div class="cabecalho-marca">
@@ -24,11 +26,39 @@
         </a>
         <h1>Instituto Vidas da Vila Aparecida</h1>
       </div>
-      <nav aria-label="Navegação principal">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="projetos.html">Projetos</a></li>
-          <li><a href="cadastro.html" aria-current="page">Cadastro</a></li>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="menu-principal"
+      >
+        <span class="menu-toggle-icone" aria-hidden="true">☰</span>
+        <span>Menu</span>
+      </button>
+
+      <nav class="nav-principal" aria-label="Navegação principal">
+        <ul id="menu-principal" class="menu-principal">
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+
+          <li class="menu-item-com-submenu">
+            <a href="projetos.html">Projetos</a>
+
+            <ul class="submenu">
+              <li>
+                <a href="projetos.html#titulo-projetos">Projetos ativos</a>
+              </li>
+              <li>
+                <a href="projetos.html#titulo-voluntariado">Voluntariado</a>
+              </li>
+              <li><a href="projetos.html#titulo-doacao">Como doar</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="cadastro.html" aria-current="page">Cadastro</a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -36,6 +66,19 @@
     <main id="conteudo-principal">
       <section aria-labelledby="titulo-cadastro">
         <h2 id="titulo-cadastro">Formulário de Cadastro</h2>
+        <div class="alerta alerta-info" role="status">
+          <strong>Cadastro de voluntários:</strong>
+          preencha os campos obrigatórios. Os dados serão validados antes da
+          confirmação.
+
+          <button
+            type="button"
+            class="botao-modal"
+            data-modal-abrir="modal-voluntariado"
+          >
+            Como funciona o voluntariado?
+          </button>
+        </div>
 
         <!--
           Campos agrupados em 4 fieldsets por propósito lógico:
@@ -43,7 +86,7 @@
           texto livre. Cada <legend> é anunciada por leitores de tela
           ao entrar no grupo, dando contexto sem precisar de ARIA.
         -->
-        <form action="#" method="POST">
+        <form action="#" method="POST" novalidate>
           <fieldset>
             <legend>Dados pessoais</legend>
 
@@ -56,6 +99,9 @@
                 autocomplete="name"
                 required
               />
+              <p class="mensagem-erro">
+                Verifique este campo antes de continuar.
+              </p>
             </div>
 
             <div class="campo-formulario">
@@ -67,6 +113,9 @@
                 autocomplete="email"
                 required
               />
+              <p class="mensagem-erro">
+                Verifique este campo antes de continuar.
+              </p>
             </div>
 
             <div class="campo-formulario">
@@ -83,6 +132,9 @@
                 max="2026-09-16"
                 required
               />
+              <p class="mensagem-erro">
+                Verifique este campo antes de continuar.
+              </p>
             </div>
           </fieldset>
 
@@ -106,7 +158,12 @@
                 aria-describedby="cpf-dica"
                 required
               />
-              <span id="cpf-dica" class="dica-formato">Formato: 000.000.000-00</span>
+              <span id="cpf-dica" class="dica-formato"
+                >Formato: 000.000.000-00</span
+              >
+              <p class="mensagem-erro">
+                Verifique este campo antes de continuar.
+              </p>
             </div>
 
             <div class="campo-formulario">
@@ -128,6 +185,9 @@
               <span id="telefone-dica" class="dica-formato">
                 Formato: (00) 0000-0000 (fixo) ou (00) 00000-0000 (celular)
               </span>
+              <p class="mensagem-erro">
+                Verifique este campo antes de continuar.
+              </p>
             </div>
           </fieldset>
 
@@ -148,6 +208,9 @@
                 required
               />
               <span id="cep-dica" class="dica-formato">Formato: 00000-000</span>
+              <p class="mensagem-erro">
+                Verifique este campo antes de continuar.
+              </p>
             </div>
 
             <div class="campo-formulario">
@@ -165,6 +228,9 @@
                 placeholder="Rua das Palmeiras, 245"
                 required
               />
+              <p class="mensagem-erro">
+                Verifique este campo antes de continuar.
+              </p>
             </div>
 
             <div class="campo-formulario">
@@ -176,6 +242,9 @@
                 autocomplete="address-level2"
                 required
               />
+              <p class="mensagem-erro">
+                Verifique este campo antes de continuar.
+              </p>
             </div>
 
             <div class="campo-formulario">
@@ -219,6 +288,9 @@
                 <option value="SE">Sergipe</option>
                 <option value="TO">Tocantins</option>
               </select>
+              <p class="mensagem-erro">
+                Verifique este campo antes de continuar.
+              </p>
             </div>
           </fieldset>
 
@@ -233,16 +305,73 @@
                 placeholder="Escreva sua mensagem aqui..."
                 required
               ></textarea>
+              <p class="mensagem-erro">
+                Verifique este campo antes de continuar.
+              </p>
             </div>
           </fieldset>
 
           <button type="submit">Cadastrar</button>
         </form>
       </section>
+      <div
+        class="modal"
+        id="modal-voluntariado"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-voluntariado-titulo"
+        hidden
+      >
+        <div class="modal-conteudo">
+          <div class="modal-cabecalho">
+            <h2 id="modal-voluntariado-titulo">
+              Como funciona o voluntariado?
+            </h2>
+
+            <button
+              type="button"
+              class="modal-fechar"
+              aria-label="Fechar modal"
+            >
+              ×
+            </button>
+          </div>
+
+          <p>
+            Após o cadastro, a equipe da ONG poderá entrar em contato para
+            apresentar as atividades disponíveis e alinhar a participação de
+            acordo com o perfil e a disponibilidade do voluntário.
+          </p>
+
+          <button type="button" class="modal-confirmar">Entendi</button>
+        </div>
+      </div>
+      <div
+        id="toast-sucesso"
+        class="toast toast-sucesso"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        hidden
+      >
+        <strong>Cadastro validado!</strong>
+        <span>Formulário pronto para envio.</span>
+
+        <button
+          type="button"
+          class="toast-fechar"
+          aria-label="Fechar notificação"
+        >
+          ×
+        </button>
+      </div>
     </main>
 
     <footer class="rodape-pagina">
-      <p>&copy; 2026 Instituto Vidas da Vila Aparecida. Todos os direitos reservados.</p>
+      <p>
+        &copy; 2026 Instituto Vidas da Vila Aparecida. Todos os direitos
+        reservados.
+      </p>
     </footer>
 
     <!--

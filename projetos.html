@@ -11,7 +11,9 @@
     <title>Instituto Vidas da Vila Aparecida | Nossos Projetos</title>
   </head>
   <body>
-    <a class="pular-para-conteudo" href="#conteudo-principal">Pular para o conteúdo</a>
+    <a class="pular-para-conteudo" href="#conteudo-principal"
+      >Pular para o conteúdo</a
+    >
 
     <header>
       <div class="cabecalho-marca">
@@ -24,11 +26,39 @@
         </a>
         <h1>Instituto Vidas da Vila Aparecida</h1>
       </div>
-      <nav aria-label="Navegação principal">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="projetos.html" aria-current="page">Projetos</a></li>
-          <li><a href="cadastro.html">Cadastro</a></li>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="menu-principal"
+      >
+        <span class="menu-toggle-icone" aria-hidden="true">☰</span>
+        <span>Menu</span>
+      </button>
+
+      <nav class="nav-principal" aria-label="Navegação principal">
+        <ul id="menu-principal" class="menu-principal">
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+
+          <li class="menu-item-com-submenu">
+            <a href="projetos.html" aria-current="page">Projetos</a>
+
+            <ul class="submenu">
+              <li>
+                <a href="projetos.html#titulo-projetos">Projetos ativos</a>
+              </li>
+              <li>
+                <a href="projetos.html#titulo-voluntariado">Voluntariado</a>
+              </li>
+              <li><a href="projetos.html#titulo-doacao">Como doar</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="cadastro.html">Cadastro</a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -36,34 +66,43 @@
     <main id="conteudo-principal">
       <section aria-labelledby="titulo-projetos">
         <h2 id="titulo-projetos">Nossos Projetos</h2>
+        <div class="grid-12">
+          <article class="col-md-6 col-lg-4">
+            <div class="cabecalho-card">
+              <h3>Reforço Escolar Comunitário</h3>
+              <span class="badge badge-sucesso">Em Andamento</span>
+            </div>
+            <p>
+              Aulas de português e matemática de segunda a sexta, no contraturno
+              escolar, para crianças e adolescentes de 7 a 14 anos moradores do
+              Vila Aparecida. Vagas limitadas por sala.
+            </p>
+          </article>
 
-        <article>
-          <h3>Reforço Escolar Comunitário</h3>
-          <p>
-            Aulas de português e matemática de segunda a sexta, no contraturno
-            escolar, para crianças e adolescentes de 7 a 14 anos moradores do
-            Vila Aparecida. Vagas limitadas por sala.
-          </p>
-        </article>
+          <article class="col-md-6 col-lg-4">
+            <div class="cabecalho-card">
+              <h3>Bola pra Frente</h3>
+              <span class="badge badge-aviso">Aceitando Voluntários</span>
+            </div>
+            <p>
+              Time de futebol comunitário aos sábados de manhã, aberto a
+              crianças e adolescentes de 8 a 16 anos. Além do esporte, o projeto
+              trabalha disciplina, trabalho em equipe e permanência escolar.
+            </p>
+          </article>
 
-        <article>
-          <h3>Bola pra Frente</h3>
-          <p>
-            Time de futebol comunitário aos sábados de manhã, aberto a
-            crianças e adolescentes de 8 a 16 anos. Além do esporte, o
-            projeto trabalha disciplina, trabalho em equipe e permanência
-            escolar.
-          </p>
-        </article>
-
-        <article>
-          <h3>Cestas Solidárias</h3>
-          <p>
-            Distribuição mensal de cestas básicas para famílias cadastradas
-            em situação de vulnerabilidade, com prioridade para famílias com
-            crianças pequenas ou idosos.
-          </p>
-        </article>
+          <article class="col-md-6 col-lg-4">
+            <div class="cabecalho-card">
+              <h3>Cestas Solidárias</h3>
+              <span class="badge badge-info">Ação Mensal</span>
+            </div>
+            <p>
+              Distribuição mensal de cestas básicas para famílias cadastradas em
+              situação de vulnerabilidade, com prioridade para famílias com
+              crianças pequenas ou idosos.
+            </p>
+          </article>
+        </div>
       </section>
 
       <section aria-labelledby="titulo-voluntariado">
@@ -111,11 +150,56 @@
             na sede, de segunda a sexta, das 9h às 17h.
           </dd>
         </dl>
+        <button
+          type="button"
+          class="botao-modal"
+          data-modal-abrir="modal-doacao"
+        >
+          Ver orientações para doação
+        </button>
       </section>
+      <div
+        class="modal"
+        id="modal-doacao"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-doacao-titulo"
+        hidden
+      >
+        <div class="modal-conteudo">
+          <div class="modal-cabecalho">
+            <h2 id="modal-doacao-titulo">Orientações para doação</h2>
+
+            <button
+              type="button"
+              class="modal-fechar"
+              aria-label="Fechar modal"
+            >
+              ×
+            </button>
+          </div>
+
+          <p>
+            Antes de realizar uma doação de itens, entre em contato com o
+            Instituto para confirmar quais materiais são necessários no momento.
+          </p>
+
+          <p>
+            Alimentos devem estar dentro do prazo de validade e com a embalagem
+            íntegra.
+          </p>
+
+          <button type="button" class="modal-confirmar">Entendi</button>
+        </div>
+      </div>
     </main>
 
     <footer class="rodape-pagina">
-      <p>&copy; 2026 Instituto Vidas da Vila Aparecida. Todos os direitos reservados.</p>
+      <p>
+        &copy; 2026 Instituto Vidas da Vila Aparecida. Todos os direitos
+        reservados.
+      </p>
     </footer>
+    <script src="js/script.js"></script>
   </body>
 </html>

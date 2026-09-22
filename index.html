@@ -38,11 +38,39 @@
         </a>
         <h1>Instituto Vidas da Vila Aparecida</h1>
       </div>
-      <nav aria-label="Navegação principal">
-        <ul>
-          <li><a href="index.html" aria-current="page">Home</a></li>
-          <li><a href="projetos.html">Projetos</a></li>
-          <li><a href="cadastro.html">Cadastro</a></li>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="menu-principal"
+      >
+        <span class="menu-toggle-icone" aria-hidden="true">☰</span>
+        <span>Menu</span>
+      </button>
+
+      <nav class="nav-principal" aria-label="Navegação principal">
+        <ul id="menu-principal" class="menu-principal">
+          <li>
+            <a href="index.html" aria-current="page">Home</a>
+          </li>
+
+          <li class="menu-item-com-submenu">
+            <a href="projetos.html">Projetos</a>
+
+            <ul class="submenu">
+              <li>
+                <a href="projetos.html#titulo-projetos">Projetos ativos</a>
+              </li>
+              <li>
+                <a href="projetos.html#titulo-voluntariado">Voluntariado</a>
+              </li>
+              <li><a href="projetos.html#titulo-doacao">Como doar</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="cadastro.html">Cadastro</a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -145,5 +173,6 @@
         reservados.
       </p>
     </footer>
+    <script src="js/script.js"></script>
   </body>
 </html>
