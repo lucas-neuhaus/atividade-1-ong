@@ -11,7 +11,9 @@
     <title>Instituto Vidas da Vila Aparecida | Cadastro de Voluntários</title>
   </head>
   <body>
-    <a class="pular-para-conteudo" href="#conteudo-principal">Pular para o conteúdo</a>
+    <a class="pular-para-conteudo" href="#conteudo-principal"
+      >Pular para o conteúdo</a
+    >
 
     <header>
       <div class="cabecalho-marca">
@@ -24,11 +26,39 @@
         </a>
         <h1>Instituto Vidas da Vila Aparecida</h1>
       </div>
-      <nav aria-label="Navegação principal">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="projetos.html">Projetos</a></li>
-          <li><a href="cadastro.html" aria-current="page">Cadastro</a></li>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="menu-principal"
+      >
+        <span class="menu-toggle-icone" aria-hidden="true">☰</span>
+        <span>Menu</span>
+      </button>
+
+      <nav class="nav-principal" aria-label="Navegação principal">
+        <ul id="menu-principal" class="menu-principal">
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+
+          <li class="menu-item-com-submenu">
+            <a href="projetos.html">Projetos</a>
+
+            <ul class="submenu">
+              <li>
+                <a href="projetos.html#titulo-projetos">Projetos ativos</a>
+              </li>
+              <li>
+                <a href="projetos.html#titulo-voluntariado">Voluntariado</a>
+              </li>
+              <li><a href="projetos.html#titulo-doacao">Como doar</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="cadastro.html" aria-current="page">Cadastro</a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -106,7 +136,9 @@
                 aria-describedby="cpf-dica"
                 required
               />
-              <span id="cpf-dica" class="dica-formato">Formato: 000.000.000-00</span>
+              <span id="cpf-dica" class="dica-formato"
+                >Formato: 000.000.000-00</span
+              >
             </div>
 
             <div class="campo-formulario">
@@ -242,7 +274,10 @@
     </main>
 
     <footer class="rodape-pagina">
-      <p>&copy; 2026 Instituto Vidas da Vila Aparecida. Todos os direitos reservados.</p>
+      <p>
+        &copy; 2026 Instituto Vidas da Vila Aparecida. Todos os direitos
+        reservados.
+      </p>
     </footer>
 
     <!--

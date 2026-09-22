@@ -58,6 +58,39 @@ function formatarCEP(digitos) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // ---------- Menu responsivo ----------
+  const botaoMenu = document.querySelector('.menu-toggle');
+  const menuPrincipal = document.getElementById('menu-principal');
+
+  if (botaoMenu && menuPrincipal) {
+    botaoMenu.addEventListener('click', () => {
+      const estaAberto = menuPrincipal.classList.toggle('is-open');
+
+      botaoMenu.setAttribute('aria-expanded', String(estaAberto));
+
+      const icone = botaoMenu.querySelector('.menu-toggle-icone');
+
+      if (icone) {
+        icone.textContent = estaAberto ? '×' : '☰';
+      }
+    });
+
+    // No mobile, fecha o menu após selecionar um link.
+    menuPrincipal.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 768) {
+          menuPrincipal.classList.remove('is-open');
+          botaoMenu.setAttribute('aria-expanded', 'false');
+
+          const icone = botaoMenu.querySelector('.menu-toggle-icone');
+
+          if (icone) {
+            icone.textContent = '☰';
+          }
+        }
+      });
+    });
+  }
   const campoCPF = document.getElementById('cpf');
   const campoTelefone = document.getElementById('telefone');
   const campoCEP = document.getElementById('cep');
