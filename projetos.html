@@ -68,7 +68,10 @@
         <h2 id="titulo-projetos">Nossos Projetos</h2>
         <div class="grid-12">
           <article class="col-md-6 col-lg-4">
-            <h3>Reforço Escolar Comunitário</h3>
+            <div class="cabecalho-card">
+              <h3>Reforço Escolar Comunitário</h3>
+              <span class="badge badge-sucesso">Em Andamento</span>
+            </div>
             <p>
               Aulas de português e matemática de segunda a sexta, no contraturno
               escolar, para crianças e adolescentes de 7 a 14 anos moradores do
@@ -77,7 +80,10 @@
           </article>
 
           <article class="col-md-6 col-lg-4">
-            <h3>Bola pra Frente</h3>
+            <div class="cabecalho-card">
+              <h3>Bola pra Frente</h3>
+              <span class="badge badge-aviso">Aceitando Voluntários</span>
+            </div>
             <p>
               Time de futebol comunitário aos sábados de manhã, aberto a
               crianças e adolescentes de 8 a 16 anos. Além do esporte, o projeto
@@ -86,7 +92,10 @@
           </article>
 
           <article class="col-md-6 col-lg-4">
-            <h3>Cestas Solidárias</h3>
+            <div class="cabecalho-card">
+              <h3>Cestas Solidárias</h3>
+              <span class="badge badge-info">Ação Mensal</span>
+            </div>
             <p>
               Distribuição mensal de cestas básicas para famílias cadastradas em
               situação de vulnerabilidade, com prioridade para famílias com
@@ -141,7 +150,48 @@
             na sede, de segunda a sexta, das 9h às 17h.
           </dd>
         </dl>
+        <button
+          type="button"
+          class="botao-modal"
+          data-modal-abrir="modal-doacao"
+        >
+          Ver orientações para doação
+        </button>
       </section>
+      <div
+        class="modal"
+        id="modal-doacao"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-doacao-titulo"
+        hidden
+      >
+        <div class="modal-conteudo">
+          <div class="modal-cabecalho">
+            <h2 id="modal-doacao-titulo">Orientações para doação</h2>
+
+            <button
+              type="button"
+              class="modal-fechar"
+              aria-label="Fechar modal"
+            >
+              ×
+            </button>
+          </div>
+
+          <p>
+            Antes de realizar uma doação de itens, entre em contato com o
+            Instituto para confirmar quais materiais são necessários no momento.
+          </p>
+
+          <p>
+            Alimentos devem estar dentro do prazo de validade e com a embalagem
+            íntegra.
+          </p>
+
+          <button type="button" class="modal-confirmar">Entendi</button>
+        </div>
+      </div>
     </main>
 
     <footer class="rodape-pagina">

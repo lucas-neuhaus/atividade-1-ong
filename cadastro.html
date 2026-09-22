@@ -66,6 +66,19 @@
     <main id="conteudo-principal">
       <section aria-labelledby="titulo-cadastro">
         <h2 id="titulo-cadastro">Formulário de Cadastro</h2>
+        <div class="alerta alerta-info" role="status">
+          <strong>Cadastro de voluntários:</strong>
+          preencha os campos obrigatórios. Os dados serão validados antes da
+          confirmação.
+
+          <button
+            type="button"
+            class="botao-modal"
+            data-modal-abrir="modal-voluntariado"
+          >
+            Como funciona o voluntariado?
+          </button>
+        </div>
 
         <!--
           Campos agrupados em 4 fieldsets por propósito lógico:
@@ -301,6 +314,57 @@
           <button type="submit">Cadastrar</button>
         </form>
       </section>
+      <div
+        class="modal"
+        id="modal-voluntariado"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-voluntariado-titulo"
+        hidden
+      >
+        <div class="modal-conteudo">
+          <div class="modal-cabecalho">
+            <h2 id="modal-voluntariado-titulo">
+              Como funciona o voluntariado?
+            </h2>
+
+            <button
+              type="button"
+              class="modal-fechar"
+              aria-label="Fechar modal"
+            >
+              ×
+            </button>
+          </div>
+
+          <p>
+            Após o cadastro, a equipe da ONG poderá entrar em contato para
+            apresentar as atividades disponíveis e alinhar a participação de
+            acordo com o perfil e a disponibilidade do voluntário.
+          </p>
+
+          <button type="button" class="modal-confirmar">Entendi</button>
+        </div>
+      </div>
+      <div
+        id="toast-sucesso"
+        class="toast toast-sucesso"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        hidden
+      >
+        <strong>Cadastro validado!</strong>
+        <span>Formulário pronto para envio.</span>
+
+        <button
+          type="button"
+          class="toast-fechar"
+          aria-label="Fechar notificação"
+        >
+          ×
+        </button>
+      </div>
     </main>
 
     <footer class="rodape-pagina">

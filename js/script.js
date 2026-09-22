@@ -91,6 +91,52 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  // ---------- Modais ----------
+  const botoesAbrirModal = document.querySelectorAll("[data-modal-abrir]");
+
+  botoesAbrirModal.forEach((botaoAbrir) => {
+    const idModal = botaoAbrir.dataset.modalAbrir;
+    const modal = document.getElementById(idModal);
+
+    if (!modal) return;
+
+    const botaoFechar = modal.querySelector(".modal-fechar");
+    const botaoConfirmar = modal.querySelector(".modal-confirmar");
+
+    function abrirModal() {
+      modal.hidden = false;
+      document.body.classList.add("modal-aberto");
+
+      if (botaoFechar) {
+        botaoFechar.focus();
+      }
+    }
+
+    function fecharModal() {
+      modal.hidden = true;
+      document.body.classList.remove("modal-aberto");
+      botaoAbrir.focus();
+    }
+
+    botaoAbrir.addEventListener("click", abrirModal);
+
+    botaoFechar?.addEventListener("click", fecharModal);
+    botaoConfirmar?.addEventListener("click", fecharModal);
+
+    modal.addEventListener("click", (evento) => {
+      if (evento.target === modal) {
+        fecharModal();
+      }
+    });
+
+    document.addEventListener("keydown", (evento) => {
+      if (evento.key === "Escape" && !modal.hidden) {
+        fecharModal();
+      }
+    });
+  });
+
   const campoCPF = document.getElementById("cpf");
   const campoTelefone = document.getElementById("telefone");
   const campoCEP = document.getElementById("cep");
@@ -103,6 +149,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const formulario = document.querySelector("form");
 
   if (formulario) {
+    const toastSucesso = document.getElementById("toast-sucesso");
+    const botaoFecharToast = toastSucesso?.querySelector(".toast-fechar");
+    let temporizadorToast;
+
+    function fecharToast() {
+      if (!toastSucesso) return;
+
+      toastSucesso.hidden = true;
+      clearTimeout(temporizadorToast);
+    }
+
+    function mostrarToast() {
+      if (!toastSucesso) return;
+
+      toastSucesso.hidden = false;
+
+      clearTimeout(temporizadorToast);
+
+      temporizadorToast = setTimeout(() => {
+        fecharToast();
+      }, 4000);
+    }
+
+    botaoFecharToast?.addEventListener("click", fecharToast);
     const campos = formulario.querySelectorAll(
       "input[required], select[required], textarea[required]",
     );
@@ -184,8 +254,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Nesta atividade não existe backend para receber o cadastro.
-      console.log("Formulário válido e pronto para envio.");
+      // Nesta atividade não existe backend para persistir o cadastro.
+      // O toast fornece o feedback visual da validação bem-sucedida.
+      mostrarToast();
     });
   }
 });

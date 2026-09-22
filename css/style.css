@@ -432,6 +432,184 @@ dd {
   color: var(--cor-texto-secundario);
 }
 
+/* ---------- Badges ---------- */
+.cabecalho-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--espaco-2);
+  margin-bottom: var(--espaco-3);
+}
+
+.cabecalho-card h3 {
+  margin: 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: var(--espaco-1) var(--espaco-2);
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: var(--fonte-xs);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.badge-sucesso {
+  color: var(--cor-sucesso);
+  background-color: #f0faf4;
+}
+
+.badge-aviso {
+  color: var(--cor-aviso);
+  background-color: #fff8e6;
+}
+
+.badge-info {
+  color: var(--cor-info);
+  background-color: #f0f6ff;
+}
+
+/* ---------- Alertas ---------- */
+.alerta {
+  padding: var(--espaco-4);
+  margin-bottom: var(--espaco-6);
+  border: 1px solid;
+  border-radius: 0.5rem;
+  line-height: 1.5;
+}
+
+.alerta-info {
+  color: #123f73;
+  background-color: #eef6ff;
+  border-color: var(--cor-info);
+}
+
+.alerta-sucesso {
+  color: var(--cor-sucesso);
+  background-color: #f0faf4;
+  border-color: var(--cor-sucesso);
+}
+
+.alerta-erro {
+  color: var(--cor-erro);
+  background-color: #fff6f5;
+  border-color: var(--cor-erro);
+}
+
+/* ---------- Modal ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: var(--espaco-4);
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal-conteudo {
+  width: min(100%, 32rem);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: var(--espaco-6);
+  background-color: var(--cor-superficie);
+  color: var(--cor-texto);
+  border-radius: 0.75rem;
+  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
+}
+
+.modal-cabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--espaco-4);
+  margin-bottom: var(--espaco-4);
+}
+
+.modal-cabecalho h2 {
+  margin: 0;
+  font-size: var(--fonte-xl);
+}
+
+.modal-fechar {
+  flex-shrink: 0;
+  padding: var(--espaco-1) var(--espaco-2);
+  background: transparent;
+  color: var(--cor-texto);
+  font-size: var(--fonte-xl);
+  line-height: 1;
+}
+
+.modal-fechar:hover:not(:disabled) {
+  background-color: var(--cor-primaria-clara);
+}
+
+.modal-confirmar {
+  margin-top: var(--espaco-2);
+}
+
+body.modal-aberto {
+  overflow: hidden;
+}
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed;
+  right: var(--espaco-4);
+  bottom: var(--espaco-4);
+  z-index: 1100;
+
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--espaco-1) var(--espaco-4);
+
+  width: min(calc(100% - 2rem), 24rem);
+  padding: var(--espaco-4);
+
+  border: 1px solid;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.toast[hidden] {
+  display: none;
+}
+
+.toast-sucesso {
+  color: var(--cor-sucesso);
+  background-color: #f0faf4;
+  border-color: var(--cor-sucesso);
+}
+
+.toast strong,
+.toast span {
+  grid-column: 1;
+}
+
+.toast-fechar {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+
+  padding: var(--espaco-1) var(--espaco-2);
+  background: transparent;
+  color: currentColor;
+  font-size: var(--fonte-lg);
+  line-height: 1;
+}
+
+.toast-fechar:hover:not(:disabled) {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
 /* ---------- Breakpoints mobile first ---------- */
 
 /* Celulares maiores */
