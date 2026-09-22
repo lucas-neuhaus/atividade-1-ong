@@ -73,7 +73,7 @@
           texto livre. Cada <legend> é anunciada por leitores de tela
           ao entrar no grupo, dando contexto sem precisar de ARIA.
         -->
-        <form action="#" method="POST">
+        <form action="#" method="POST" novalidate>
           <fieldset>
             <legend>Dados pessoais</legend>
 
@@ -86,6 +86,9 @@
                 autocomplete="name"
                 required
               />
+              <p class="mensagem-erro">
+                Verifique este campo antes de continuar.
+              </p>
             </div>
 
             <div class="campo-formulario">
@@ -97,6 +100,9 @@
                 autocomplete="email"
                 required
               />
+              <p class="mensagem-erro">
+                Verifique este campo antes de continuar.
+              </p>
             </div>
 
             <div class="campo-formulario">
@@ -113,6 +119,9 @@
                 max="2026-09-16"
                 required
               />
+              <p class="mensagem-erro">
+                Verifique este campo antes de continuar.
+              </p>
             </div>
           </fieldset>
 
@@ -139,6 +148,9 @@
               <span id="cpf-dica" class="dica-formato"
                 >Formato: 000.000.000-00</span
               >
+              <p class="mensagem-erro">
+                Verifique este campo antes de continuar.
+              </p>
             </div>
 
             <div class="campo-formulario">
@@ -160,6 +172,9 @@
               <span id="telefone-dica" class="dica-formato">
                 Formato: (00) 0000-0000 (fixo) ou (00) 00000-0000 (celular)
               </span>
+              <p class="mensagem-erro">
+                Verifique este campo antes de continuar.
+              </p>
             </div>
           </fieldset>
 
@@ -180,6 +195,9 @@
                 required
               />
               <span id="cep-dica" class="dica-formato">Formato: 00000-000</span>
+              <p class="mensagem-erro">
+                Verifique este campo antes de continuar.
+              </p>
             </div>
 
             <div class="campo-formulario">
@@ -197,6 +215,9 @@
                 placeholder="Rua das Palmeiras, 245"
                 required
               />
+              <p class="mensagem-erro">
+                Verifique este campo antes de continuar.
+              </p>
             </div>
 
             <div class="campo-formulario">
@@ -208,6 +229,9 @@
                 autocomplete="address-level2"
                 required
               />
+              <p class="mensagem-erro">
+                Verifique este campo antes de continuar.
+              </p>
             </div>
 
             <div class="campo-formulario">
@@ -251,6 +275,9 @@
                 <option value="SE">Sergipe</option>
                 <option value="TO">Tocantins</option>
               </select>
+              <p class="mensagem-erro">
+                Verifique este campo antes de continuar.
+              </p>
             </div>
           </fieldset>
 
@@ -265,6 +292,9 @@
                 placeholder="Escreva sua mensagem aqui..."
                 required
               ></textarea>
+              <p class="mensagem-erro">
+                Verifique este campo antes de continuar.
+              </p>
             </div>
           </fieldset>
 

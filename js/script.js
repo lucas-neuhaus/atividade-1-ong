@@ -18,11 +18,11 @@
  * @param {number} maxDigitos
  */
 function aplicarMascara(input, formatador, maxDigitos) {
-  input.addEventListener('input', () => {
+  input.addEventListener("input", () => {
     const posicaoCursorOriginal = input.selectionStart;
     const tamanhoAntes = input.value.length;
 
-    const digitos = input.value.replace(/\D/g, '').slice(0, maxDigitos);
+    const digitos = input.value.replace(/\D/g, "").slice(0, maxDigitos);
     input.value = formatador(digitos);
 
     // Reposiciona o cursor de forma aproximada, compensando os
@@ -35,80 +35,157 @@ function aplicarMascara(input, formatador, maxDigitos) {
 
 function formatarCPF(digitos) {
   return digitos
-    .replace(/(\d{3})(\d)/, '$1.$2')
-    .replace(/(\d{3})(\d)/, '$1.$2')
-    .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    .replace(/(\d{3})(\d)/, "$1.$2")
+    .replace(/(\d{3})(\d)/, "$1.$2")
+    .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
 }
 
 function formatarTelefone(digitos) {
   if (digitos.length <= 10) {
     // Fixo: (00) 0000-0000
     return digitos
-      .replace(/(\d{2})(\d)/, '($1) $2')
-      .replace(/(\d{4})(\d{1,4})$/, '$1-$2');
+      .replace(/(\d{2})(\d)/, "($1) $2")
+      .replace(/(\d{4})(\d{1,4})$/, "$1-$2");
   }
   // Celular: (00) 00000-0000
   return digitos
-    .replace(/(\d{2})(\d)/, '($1) $2')
-    .replace(/(\d{5})(\d{1,4})$/, '$1-$2');
+    .replace(/(\d{2})(\d)/, "($1) $2")
+    .replace(/(\d{5})(\d{1,4})$/, "$1-$2");
 }
 
 function formatarCEP(digitos) {
-  return digitos.replace(/(\d{5})(\d{1,3})$/, '$1-$2');
+  return digitos.replace(/(\d{5})(\d{1,3})$/, "$1-$2");
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   // ---------- Menu responsivo ----------
-  const botaoMenu = document.querySelector('.menu-toggle');
-  const menuPrincipal = document.getElementById('menu-principal');
+  const botaoMenu = document.querySelector(".menu-toggle");
+  const menuPrincipal = document.getElementById("menu-principal");
 
   if (botaoMenu && menuPrincipal) {
-    botaoMenu.addEventListener('click', () => {
-      const estaAberto = menuPrincipal.classList.toggle('is-open');
+    botaoMenu.addEventListener("click", () => {
+      const estaAberto = menuPrincipal.classList.toggle("is-open");
 
-      botaoMenu.setAttribute('aria-expanded', String(estaAberto));
+      botaoMenu.setAttribute("aria-expanded", String(estaAberto));
 
-      const icone = botaoMenu.querySelector('.menu-toggle-icone');
+      const icone = botaoMenu.querySelector(".menu-toggle-icone");
 
       if (icone) {
-        icone.textContent = estaAberto ? '×' : '☰';
+        icone.textContent = estaAberto ? "×" : "☰";
       }
     });
 
     // No mobile, fecha o menu após selecionar um link.
-    menuPrincipal.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
+    menuPrincipal.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
         if (window.innerWidth < 768) {
-          menuPrincipal.classList.remove('is-open');
-          botaoMenu.setAttribute('aria-expanded', 'false');
+          menuPrincipal.classList.remove("is-open");
+          botaoMenu.setAttribute("aria-expanded", "false");
 
-          const icone = botaoMenu.querySelector('.menu-toggle-icone');
+          const icone = botaoMenu.querySelector(".menu-toggle-icone");
 
           if (icone) {
-            icone.textContent = '☰';
+            icone.textContent = "☰";
           }
         }
       });
     });
   }
-  const campoCPF = document.getElementById('cpf');
-  const campoTelefone = document.getElementById('telefone');
-  const campoCEP = document.getElementById('cep');
+  const campoCPF = document.getElementById("cpf");
+  const campoTelefone = document.getElementById("telefone");
+  const campoCEP = document.getElementById("cep");
 
   if (campoCPF) aplicarMascara(campoCPF, formatarCPF, 11);
   if (campoTelefone) aplicarMascara(campoTelefone, formatarTelefone, 11);
   if (campoCEP) aplicarMascara(campoCEP, formatarCEP, 8);
 
-  // Feedback de validação: quando um campo inválido perde o foco,
-  // marcamos aria-invalid para leitores de tela sinalizarem o erro.
-  const camposValidaveis = [campoCPF, campoTelefone, campoCEP].filter(Boolean);
-  camposValidaveis.forEach((campo) => {
-    campo.addEventListener('blur', () => {
-      if (campo.value === '') {
-        campo.removeAttribute('aria-invalid');
+  // ---------- Validação visual do formulário ----------
+  const formulario = document.querySelector("form");
+
+  if (formulario) {
+    const campos = formulario.querySelectorAll(
+      "input[required], select[required], textarea[required]",
+    );
+
+    function atualizarEstadoCampo(campo) {
+      const container = campo.closest(".campo-formulario");
+
+      if (!container) return;
+
+      container.classList.remove("is-valid", "is-invalid");
+
+      // Mantém o estado inicial enquanto o campo estiver vazio.
+      if (campo.value.trim() === "") {
+        campo.removeAttribute("aria-invalid");
         return;
       }
-      campo.setAttribute('aria-invalid', String(!campo.checkValidity()));
+
+      if (campo.checkValidity()) {
+        container.classList.add("is-valid");
+        campo.setAttribute("aria-invalid", "false");
+      } else {
+        container.classList.add("is-invalid");
+        campo.setAttribute("aria-invalid", "true");
+      }
+    }
+
+    campos.forEach((campo) => {
+      campo.addEventListener("blur", () => {
+        atualizarEstadoCampo(campo);
+      });
+
+      campo.addEventListener("input", () => {
+        const container = campo.closest(".campo-formulario");
+
+        if (
+          container &&
+          (container.classList.contains("is-valid") ||
+            container.classList.contains("is-invalid"))
+        ) {
+          atualizarEstadoCampo(campo);
+        }
+      });
+
+      campo.addEventListener("change", () => {
+        atualizarEstadoCampo(campo);
+      });
     });
-  });
+
+    formulario.addEventListener("submit", (evento) => {
+      evento.preventDefault();
+
+      let formularioValido = true;
+      let primeiroInvalido = null;
+
+      campos.forEach((campo) => {
+        const container = campo.closest(".campo-formulario");
+
+        if (!container) return;
+
+        container.classList.remove("is-valid", "is-invalid");
+
+        if (campo.checkValidity()) {
+          container.classList.add("is-valid");
+          campo.setAttribute("aria-invalid", "false");
+        } else {
+          container.classList.add("is-invalid");
+          campo.setAttribute("aria-invalid", "true");
+
+          formularioValido = false;
+
+          if (!primeiroInvalido) {
+            primeiroInvalido = campo;
+          }
+        }
+      });
+
+      if (!formularioValido && primeiroInvalido) {
+        primeiroInvalido.focus();
+        return;
+      }
+
+      // Nesta atividade não existe backend para receber o cadastro.
+      console.log("Formulário válido e pronto para envio.");
+    });
+  }
 });
