@@ -45,10 +45,20 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: var(--fonte-base);
+  line-height: 1.6;
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo);
+}
+
 /* ---------- Utilitário de acessibilidade ---------- */
-/* Esconde visualmente mas mantém legível por leitores de tela.
-   Usado para headings que dão contexto a articles/seções para
-   quem navega por AT, sem repetir informação visualmente redundante. */
 .visualmente-oculto {
   position: absolute;
   width: 1px;
@@ -61,52 +71,44 @@
   border: 0;
 }
 
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  line-height: 1.5;
-  color: #1a1a1a;
-  background-color: #fafafa;
-}
-
-/* ---------- Skip link (acessibilidade de teclado) ---------- */
+/* ---------- Skip link ---------- */
 .pular-para-conteudo {
   position: absolute;
   left: -9999px;
   top: 0;
-  background: #1a1a1a;
-  color: #fff;
-  padding: 0.75rem 1rem;
+  background: var(--cor-texto);
+  color: var(--cor-superficie);
+  padding: var(--espaco-3) var(--espaco-4);
   z-index: 100;
 }
 
 .pular-para-conteudo:focus {
-  left: 0.5rem;
-  top: 0.5rem;
+  left: var(--espaco-2);
+  top: var(--espaco-2);
 }
 
-/* ---------- Foco visível em qualquer elemento interativo ---------- */
+/* ---------- Foco visível ---------- */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid #1a5fb4;
-  outline-offset: 2px;
+  outline: 3px solid var(--cor-foco);
+  outline-offset: 3px;
 }
 
 /* ---------- Header / navegação ---------- */
 header {
-  background-color: #2e2e2e;
-  color: #fff;
-  padding: 1.5rem 1rem;
+  background-color: var(--cor-primaria-escura);
+  color: var(--cor-superficie);
+  padding: var(--espaco-6) var(--espaco-4);
 }
 
 .cabecalho-marca {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
+  gap: var(--espaco-3);
+  margin-bottom: var(--espaco-2);
 }
 
 .link-logo {
@@ -122,19 +124,20 @@ header {
 
 header h1 {
   margin: 0;
-  font-size: 1.4rem;
+  font-size: var(--fonte-xl);
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
+  flex-wrap: wrap;
+  gap: var(--espaco-4);
   padding: 0;
   margin: 0;
 }
 
 nav a {
-  color: #fff;
+  color: var(--cor-superficie);
   text-decoration: none;
 }
 
@@ -143,27 +146,37 @@ nav a:hover {
 }
 
 nav a[aria-current="page"] {
-  font-weight: bold;
+  font-weight: 700;
   text-decoration: underline;
 }
 
-/* ---------- Conteúdo principal ---------- */
+/* ---------- Conteúdo / Grid de 12 colunas ---------- */
 main {
-  max-width: 60rem;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+  width: min(100% - 2rem, 72rem);
+  margin-inline: auto;
+  padding-block: var(--espaco-8);
+}
+
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--espaco-6);
+}
+
+.grid-12 > * {
+  grid-column: span 12;
 }
 
 section {
-  margin-bottom: 2.5rem;
+  margin-bottom: var(--espaco-12);
 }
 
 article {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 1.25rem;
-  margin-bottom: 1rem;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: 0.75rem;
+  padding: var(--espaco-6);
+  margin-bottom: var(--espaco-4);
 }
 
 /* ---------- Imagens e figuras ---------- */
@@ -171,17 +184,17 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
-  border-radius: 4px;
+  border-radius: 0.5rem;
 }
 
 figure {
-  margin: 0 0 1rem;
+  margin: 0 0 var(--espaco-4);
 }
 
 figcaption {
-  font-size: 0.85rem;
-  color: #555;
-  margin-top: 0.5rem;
+  font-size: var(--fonte-sm);
+  color: var(--cor-texto-secundario);
+  margin-top: var(--espaco-2);
 }
 
 /* ---------- Dados de contato ---------- */
@@ -190,64 +203,67 @@ address {
 }
 
 address p {
-  margin: 0 0 0.5rem;
+  margin: 0 0 var(--espaco-2);
 }
 
 address a {
-  color: #1a5fb4;
+  color: var(--cor-secundaria);
 }
 
 /* ---------- Formulário ---------- */
 form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  max-width: 30rem;
+  gap: var(--espaco-6);
+  max-width: 40rem;
 }
 
 fieldset {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 1rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: 0.75rem;
+  padding: var(--espaco-4);
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: var(--espaco-4);
 }
 
 legend {
-  font-weight: bold;
-  padding: 0 0.5rem;
+  font-weight: 700;
+  padding: 0 var(--espaco-2);
 }
 
 .campo-formulario {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: var(--espaco-1);
 }
 
 label {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 input,
 select,
 textarea {
-  padding: 0.6rem;
-  border: 1px solid #999;
-  border-radius: 4px;
-  font-size: 1rem;
+  width: 100%;
+  padding: var(--espaco-3);
+  border: 1px solid var(--cor-borda);
+  border-radius: 0.5rem;
+  font-size: var(--fonte-base);
   font-family: inherit;
+  color: var(--cor-texto);
+  background: var(--cor-superficie);
 }
 
 input[aria-invalid="true"],
 select[aria-invalid="true"],
 textarea[aria-invalid="true"] {
-  border-color: #c01c28;
+  border-color: var(--cor-erro);
 }
 
 .dica-formato {
-  font-size: 0.85rem;
-  color: #555;
+  font-size: var(--fonte-sm);
+  color: var(--cor-texto-secundario);
 }
 
 textarea {
@@ -257,27 +273,29 @@ textarea {
 
 button {
   align-self: flex-start;
-  background-color: #1a5fb4;
-  color: #fff;
+  background-color: var(--cor-primaria);
+  color: var(--cor-superficie);
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
-  font-size: 1rem;
+  padding: var(--espaco-3) var(--espaco-6);
+  border-radius: 0.5rem;
+  font-size: var(--fonte-base);
+  font-family: inherit;
+  font-weight: 700;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #144a8f;
+  background-color: var(--cor-primaria-escura);
 }
 
-/* ---------- Listas de definição (ex: formas de doação) ---------- */
+/* ---------- Listas de definição ---------- */
 dl {
   margin: 0;
 }
 
 dt {
-  font-weight: bold;
-  margin-top: 0.75rem;
+  font-weight: 700;
+  margin-top: var(--espaco-3);
 }
 
 dt:first-child {
@@ -285,26 +303,92 @@ dt:first-child {
 }
 
 dd {
-  margin: 0.25rem 0 0;
-  color: #555;
+  margin: var(--espaco-1) 0 0;
+  color: var(--cor-texto-secundario);
 }
 
 /* ---------- Footer ---------- */
 .rodape-pagina {
-  background-color: #2e2e2e;
-  color: #ccc;
+  background-color: var(--cor-primaria-escura);
+  color: var(--cor-primaria-clara);
   text-align: center;
-  padding: 1rem;
+  padding: var(--espaco-4);
 }
 
 .rodape-depoimento {
   font-style: italic;
-  color: #555;
+  color: var(--cor-texto-secundario);
 }
 
-/* ---------- Respeita preferência de redução de movimento ---------- */
+/* ---------- Breakpoints mobile first ---------- */
+
+/* Celulares maiores */
+@media (min-width: 480px) {
+  main {
+    width: min(100% - 3rem, 72rem);
+  }
+
+  article {
+    padding: var(--espaco-8);
+  }
+}
+
+/* Tablets */
+@media (min-width: 768px) {
+  header {
+    padding-inline: var(--espaco-8);
+  }
+
+  nav ul {
+    gap: var(--espaco-6);
+  }
+
+  .grid-12 > .col-md-6 {
+    grid-column: span 6;
+  }
+}
+
+/* Notebooks */
+@media (min-width: 1024px) {
+  main {
+    padding-block: var(--espaco-12);
+  }
+
+  .grid-12 > .col-lg-4 {
+    grid-column: span 4;
+  }
+
+  .grid-12 > .col-lg-8 {
+    grid-column: span 8;
+  }
+}
+
+/* Desktops */
+@media (min-width: 1280px) {
+  main {
+    width: min(100% - 4rem, 76rem);
+  }
+
+  .grid-12 {
+    gap: var(--espaco-8);
+  }
+}
+
+/* Telas panorâmicas */
+@media (min-width: 1536px) {
+  main {
+    width: min(100% - 6rem, 82rem);
+  }
+
+  section {
+    margin-bottom: var(--espaco-16);
+  }
+}
+
+/* ---------- Redução de movimento ---------- */
 @media (prefers-reduced-motion: reduce) {
   * {
+    scroll-behavior: auto !important;
     animation: none !important;
     transition: none !important;
   }
