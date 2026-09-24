@@ -1,3 +1,46 @@
+const projetos = [
+  {
+    titulo: "Reforço Escolar Comunitário",
+    status: "Em Andamento",
+    classeBadge: "badge-sucesso",
+    descricao:
+      "Aulas de português e matemática de segunda a sexta, no contraturno escolar, para crianças e adolescentes de 7 a 14 anos moradores do Vila Aparecida. Vagas limitadas por sala.",
+  },
+  {
+    titulo: "Bola pra Frente",
+    status: "Aceitando Voluntários",
+    classeBadge: "badge-aviso",
+    descricao:
+      "Time de futebol comunitário aos sábados de manhã, aberto a crianças e adolescentes de 8 a 16 anos. Além do esporte, o projeto trabalha disciplina, trabalho em equipe e permanência escolar.",
+  },
+  {
+    titulo: "Cestas Solidárias",
+    status: "Ação Mensal",
+    classeBadge: "badge-info",
+    descricao:
+      "Distribuição mensal de cestas básicas para famílias cadastradas em situação de vulnerabilidade, com prioridade para famílias com crianças pequenas ou idosos.",
+  },
+];
+
+function gerarCardsProjetos() {
+  return projetos
+    .map(
+      (projeto) => `
+        <article class="col-md-6 col-lg-4">
+          <div class="cabecalho-card">
+            <h3>${projeto.titulo}</h3>
+            <span class="badge ${projeto.classeBadge}">
+              ${projeto.status}
+            </span>
+          </div>
+
+          <p>${projeto.descricao}</p>
+        </article>
+      `,
+    )
+    .join("");
+}
+
 export function templateHome() {
   return `
     <section aria-labelledby="titulo-quem-somos">
@@ -107,44 +150,7 @@ export function templateProjetos() {
       <h2 id="titulo-projetos">Nossos Projetos</h2>
 
       <div class="grid-12">
-        <article class="col-md-6 col-lg-4">
-          <div class="cabecalho-card">
-            <h3>Reforço Escolar Comunitário</h3>
-            <span class="badge badge-sucesso">Em Andamento</span>
-          </div>
-
-          <p>
-            Aulas de português e matemática de segunda a sexta, no contraturno
-            escolar, para crianças e adolescentes de 7 a 14 anos moradores do
-            Vila Aparecida. Vagas limitadas por sala.
-          </p>
-        </article>
-
-        <article class="col-md-6 col-lg-4">
-          <div class="cabecalho-card">
-            <h3>Bola pra Frente</h3>
-            <span class="badge badge-aviso">Aceitando Voluntários</span>
-          </div>
-
-          <p>
-            Time de futebol comunitário aos sábados de manhã, aberto a
-            crianças e adolescentes de 8 a 16 anos. Além do esporte, o projeto
-            trabalha disciplina, trabalho em equipe e permanência escolar.
-          </p>
-        </article>
-
-        <article class="col-md-6 col-lg-4">
-          <div class="cabecalho-card">
-            <h3>Cestas Solidárias</h3>
-            <span class="badge badge-info">Ação Mensal</span>
-          </div>
-
-          <p>
-            Distribuição mensal de cestas básicas para famílias cadastradas em
-            situação de vulnerabilidade, com prioridade para famílias com
-            crianças pequenas ou idosos.
-          </p>
-        </article>
+        ${gerarCardsProjetos()}
       </div>
     </section>
 
