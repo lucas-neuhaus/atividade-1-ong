@@ -1,3 +1,37 @@
+export function inicializarMenu() {
+  const botaoMenu = document.querySelector(".menu-toggle");
+  const menuPrincipal = document.getElementById("menu-principal");
+
+  if (!botaoMenu || !menuPrincipal) return;
+
+  botaoMenu.addEventListener("click", () => {
+    const estaAberto = menuPrincipal.classList.toggle("is-open");
+
+    botaoMenu.setAttribute("aria-expanded", String(estaAberto));
+
+    const icone = botaoMenu.querySelector(".menu-toggle-icone");
+
+    if (icone) {
+      icone.textContent = estaAberto ? "×" : "☰";
+    }
+  });
+
+  menuPrincipal.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (window.innerWidth >= 768) return;
+
+      menuPrincipal.classList.remove("is-open");
+      botaoMenu.setAttribute("aria-expanded", "false");
+
+      const icone = botaoMenu.querySelector(".menu-toggle-icone");
+
+      if (icone) {
+        icone.textContent = "☰";
+      }
+    });
+  });
+}
+
 export function inicializarModais() {
   const botoesAbrirModal = document.querySelectorAll("[data-modal-abrir]");
 

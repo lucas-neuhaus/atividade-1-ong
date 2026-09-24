@@ -27,3 +27,15 @@ export function obterDadosFormulario(formulario) {
 
   return Object.fromEntries(formData.entries());
 }
+
+export function atualizarResumoCadastros() {
+  const resumo = document.getElementById("resumo-cadastros");
+  const total = document.getElementById("total-voluntarios");
+
+  if (!resumo || !total) return;
+
+  const voluntarios = obterVoluntarios();
+
+  total.textContent = String(voluntarios.length);
+  resumo.hidden = false;
+}

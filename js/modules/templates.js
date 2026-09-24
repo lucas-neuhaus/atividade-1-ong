@@ -260,6 +260,19 @@ export function templateCadastro() {
         </button>
       </div>
 
+      <div
+        id="resumo-cadastros"
+        class="alerta alerta-sucesso"
+        role="status"
+        aria-live="polite"
+        hidden
+      >
+        <strong>Voluntários cadastrados:</strong>
+        <span id="total-voluntarios">0</span>
+        <br />
+        <span>Os cadastros permanecem armazenados neste navegador.</span>
+      </div>
+
       <form action="#" method="POST" novalidate>
         <fieldset>
           <legend>Dados pessoais</legend>

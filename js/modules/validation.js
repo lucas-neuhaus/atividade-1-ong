@@ -1,4 +1,4 @@
-import { obterDadosFormulario, salvarVoluntario } from "./storage.js";
+import { atualizarResumoCadastros, obterDadosFormulario, salvarVoluntario } from "./storage.js";
 import { mostrarToastSucesso } from "./ui.js";
 
 function aplicarMascara(input, formatador, maxDigitos) {
@@ -78,6 +78,8 @@ export function inicializarValidacao() {
 
   if (!formulario) return;
 
+  atualizarResumoCadastros();
+
   definirDataMaxima();
 
   const campoCPF = formulario.querySelector("#cpf");
@@ -150,6 +152,7 @@ export function inicializarValidacao() {
     const dadosFormulario = obterDadosFormulario(formulario);
 
     salvarVoluntario(dadosFormulario);
+    atualizarResumoCadastros();
     mostrarToastSucesso();
 
     formulario.reset();
