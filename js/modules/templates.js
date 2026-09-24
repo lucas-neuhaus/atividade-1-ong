@@ -284,6 +284,8 @@ export function templateCadastro() {
               id="nome"
               name="nome"
               autocomplete="name"
+              pattern="[A-Za-zÀ-ÿ]+(?: [A-Za-zÀ-ÿ]+)+"
+              minlength="5"
               required
             />
             <p class="mensagem-erro">
@@ -399,6 +401,7 @@ export function templateCadastro() {
               name="endereco"
               autocomplete="address-line1"
               placeholder="Rua das Palmeiras, 245"
+              pattern="(?=.*[A-Za-zÀ-ÿ]).{3,}"
               required
             />
             <p class="mensagem-erro">
@@ -413,6 +416,7 @@ export function templateCadastro() {
               id="cidade"
               name="cidade"
               autocomplete="address-level2"
+              pattern="(?=.*[A-Za-zÀ-ÿ]).{2,}"
               required
             />
             <p class="mensagem-erro">
@@ -472,10 +476,12 @@ export function templateCadastro() {
               id="mensagem"
               name="mensagem"
               placeholder="Escreva sua mensagem aqui..."
+              minlength="20"
+              maxlength="500"
               required
             ></textarea>
             <p class="mensagem-erro">
-              Verifique este campo antes de continuar.
+              Informe uma motivação com pelo menos 20 caracteres.
             </p>
           </div>
         </fieldset>

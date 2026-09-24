@@ -97,6 +97,10 @@ textarea:focus-visible {
   outline-offset: 3px;
 }
 
+#app:focus {
+  outline: none;
+}
+
 /* ---------- Header / navegação ---------- */
 header {
   background-color: var(--cor-primaria-escura);
