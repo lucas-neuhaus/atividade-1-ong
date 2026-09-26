@@ -32,6 +32,42 @@ export function inicializarMenu() {
   });
 }
 
+export function inicializarTema() {
+  const botaoTema = document.getElementById("tema-toggle");
+
+  if (!botaoTema) return;
+
+  const icone = botaoTema.querySelector(".tema-toggle-icone");
+  const texto = botaoTema.querySelector(".tema-toggle-texto");
+
+  function aplicarTema(tema) {
+    const modoEscuro = tema === "escuro";
+
+    document.documentElement.dataset.tema = modoEscuro ? "escuro" : "claro";
+    botaoTema.setAttribute("aria-pressed", String(modoEscuro));
+
+    if (icone) {
+      icone.textContent = modoEscuro ? "☀️" : "🌙";
+    }
+
+    if (texto) {
+      texto.textContent = modoEscuro ? "Modo claro" : "Modo escuro";
+    }
+  }
+
+  const temaSalvo = localStorage.getItem("tema");
+
+  aplicarTema(temaSalvo === "escuro" ? "escuro" : "claro");
+
+  botaoTema.addEventListener("click", () => {
+    const temaAtual = document.documentElement.dataset.tema;
+    const novoTema = temaAtual === "escuro" ? "claro" : "escuro";
+
+    aplicarTema(novoTema);
+    localStorage.setItem("tema", novoTema);
+  });
+}
+
 export function inicializarModais() {
   const botoesAbrirModal = document.querySelectorAll("[data-modal-abrir]");
 
@@ -82,22 +118,15 @@ export function inicializarModais() {
       }
 
       const primeiroElemento = elementosFocaveis[0];
-      const ultimoElemento =
-        elementosFocaveis[elementosFocaveis.length - 1];
+      const ultimoElemento = elementosFocaveis[elementosFocaveis.length - 1];
 
-      if (
-        evento.shiftKey &&
-        document.activeElement === primeiroElemento
-      ) {
+      if (evento.shiftKey && document.activeElement === primeiroElemento) {
         evento.preventDefault();
         ultimoElemento.focus();
         return;
       }
 
-      if (
-        !evento.shiftKey &&
-        document.activeElement === ultimoElemento
-      ) {
+      if (!evento.shiftKey && document.activeElement === ultimoElemento) {
         evento.preventDefault();
         primeiroElemento.focus();
       }
