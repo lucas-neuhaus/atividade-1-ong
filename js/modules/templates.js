@@ -286,9 +286,10 @@ export function templateCadastro() {
               autocomplete="name"
               pattern="[A-Za-zÀ-ÿ]+(?: [A-Za-zÀ-ÿ]+)+"
               minlength="5"
+              aria-describedby="nome-erro"
               required
             />
-            <p class="mensagem-erro">
+            <p id="nome-erro" class="mensagem-erro">
               Verifique este campo antes de continuar.
             </p>
           </div>
@@ -300,9 +301,10 @@ export function templateCadastro() {
               id="email"
               name="email"
               autocomplete="email"
+              aria-describedby="email-erro"
               required
             />
-            <p class="mensagem-erro">
+            <p id="email-erro" class="mensagem-erro">
               Verifique este campo antes de continuar.
             </p>
           </div>
@@ -315,9 +317,10 @@ export function templateCadastro() {
               name="data_nascimento"
               autocomplete="bday"
               max="2026-09-24"
+              aria-describedby="data-nascimento-erro"
               required
             />
-            <p class="mensagem-erro">
+            <p id="data-nascimento-erro" class="mensagem-erro">
               Verifique este campo antes de continuar.
             </p>
           </div>
@@ -335,13 +338,13 @@ export function templateCadastro() {
               inputmode="numeric"
               pattern="\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}"
               placeholder="000.000.000-00"
-              aria-describedby="cpf-dica"
+              aria-describedby="cpf-dica cpf-erro"
               required
             />
             <span id="cpf-dica" class="dica-formato">
               Formato: 000.000.000-00
             </span>
-            <p class="mensagem-erro">
+            <p id="cpf-erro" class="mensagem-erro">
               Verifique este campo antes de continuar.
             </p>
           </div>
@@ -356,14 +359,14 @@ export function templateCadastro() {
               autocomplete="tel"
               pattern="\\(\\d{2}\\) \\d{4,5}-\\d{4}"
               placeholder="(00) 00000-0000"
-              aria-describedby="telefone-dica"
+              aria-describedby="telefone-dica telefone-erro"
               required
             />
             <span id="telefone-dica" class="dica-formato">
               Formato: (00) 0000-0000 (fixo) ou
               (00) 00000-0000 (celular)
             </span>
-            <p class="mensagem-erro">
+            <p id="telefone-erro" class="mensagem-erro">
               Verifique este campo antes de continuar.
             </p>
           </div>
@@ -382,13 +385,13 @@ export function templateCadastro() {
               autocomplete="postal-code"
               pattern="\\d{5}-\\d{3}"
               placeholder="00000-000"
-              aria-describedby="cep-dica"
+              aria-describedby="cep-dica cep-erro"
               required
             />
             <span id="cep-dica" class="dica-formato">
               Formato: 00000-000
             </span>
-            <p class="mensagem-erro">
+            <p id="cep-erro" class="mensagem-erro">
               Verifique este campo antes de continuar.
             </p>
           </div>
@@ -402,9 +405,10 @@ export function templateCadastro() {
               autocomplete="address-line1"
               placeholder="Rua das Palmeiras, 245"
               pattern="(?=.*[A-Za-zÀ-ÿ]).{3,}"
+              aria-describedby="endereco-erro"
               required
             />
-            <p class="mensagem-erro">
+            <p id="endereco-erro" class="mensagem-erro">
               Verifique este campo antes de continuar.
             </p>
           </div>
@@ -417,9 +421,10 @@ export function templateCadastro() {
               name="cidade"
               autocomplete="address-level2"
               pattern="(?=.*[A-Za-zÀ-ÿ]).{2,}"
+              aria-describedby="cidade-erro"
               required
             />
-            <p class="mensagem-erro">
+            <p id="cidade-erro" class="mensagem-erro">
               Verifique este campo antes de continuar.
             </p>
           </div>
@@ -430,6 +435,7 @@ export function templateCadastro() {
               id="estado"
               name="estado"
               autocomplete="address-level1"
+              aria-describedby="estado-erro"
               required
             >
               <option value="" selected disabled>Selecione...</option>
@@ -461,7 +467,7 @@ export function templateCadastro() {
               <option value="SE">Sergipe</option>
               <option value="TO">Tocantins</option>
             </select>
-            <p class="mensagem-erro">
+            <p id="estado-erro" class="mensagem-erro">
               Verifique este campo antes de continuar.
             </p>
           </div>
@@ -478,9 +484,10 @@ export function templateCadastro() {
               placeholder="Escreva sua mensagem aqui..."
               minlength="20"
               maxlength="500"
+              aria-describedby="mensagem-erro"
               required
             ></textarea>
-            <p class="mensagem-erro">
+            <p id="mensagem-erro" class="mensagem-erro">
               Informe uma motivação com pelo menos 20 caracteres.
             </p>
           </div>
