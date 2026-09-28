@@ -1,3 +1,5 @@
+import imagemCestas from "../../imagens/cestas-solidarias.avif";
+
 const projetos = [
   {
     titulo: "Reforço Escolar Comunitário",
@@ -48,7 +50,7 @@ export function templateHome() {
 
       <figure>
         <img
-          src="../imagens/cestas-solidarias.png"
+          src="${imagemCestas}"
           alt="Voluntários de camiseta preta entregando cestas básicas a moradores em uma mesa ao ar livre, com a fachada pintada 'Vila Aparecida, Florianópolis - SC' ao fundo"
           width="1200"
           height="800"
