@@ -1,8 +1,9 @@
 import { renderizarRota } from "./modules/router.js";
-import { inicializarMenu } from "./modules/ui.js";
+import { inicializarMenu, inicializarTema } from "./modules/ui.js";
 
 window.addEventListener("DOMContentLoaded", () => {
   inicializarMenu();
+  inicializarTema();
   renderizarRota();
 });
 

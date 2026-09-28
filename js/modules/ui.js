@@ -32,6 +32,42 @@ export function inicializarMenu() {
   });
 }
 
+export function inicializarTema() {
+  const botaoTema = document.getElementById("tema-toggle");
+
+  if (!botaoTema) return;
+
+  const icone = botaoTema.querySelector(".tema-toggle-icone");
+  const texto = botaoTema.querySelector(".tema-toggle-texto");
+
+  function aplicarTema(tema) {
+    const modoEscuro = tema === "escuro";
+
+    document.documentElement.dataset.tema = modoEscuro ? "escuro" : "claro";
+    botaoTema.setAttribute("aria-pressed", String(modoEscuro));
+
+    if (icone) {
+      icone.textContent = modoEscuro ? "☀️" : "🌙";
+    }
+
+    if (texto) {
+      texto.textContent = modoEscuro ? "Modo claro" : "Modo escuro";
+    }
+  }
+
+  const temaSalvo = localStorage.getItem("tema");
+
+  aplicarTema(temaSalvo === "escuro" ? "escuro" : "claro");
+
+  botaoTema.addEventListener("click", () => {
+    const temaAtual = document.documentElement.dataset.tema;
+    const novoTema = temaAtual === "escuro" ? "claro" : "escuro";
+
+    aplicarTema(novoTema);
+    localStorage.setItem("tema", novoTema);
+  });
+}
+
 export function inicializarModais() {
   const botoesAbrirModal = document.querySelectorAll("[data-modal-abrir]");
 
@@ -44,19 +80,56 @@ export function inicializarModais() {
     const botaoFechar = modal.querySelector(".modal-fechar");
     const botaoConfirmar = modal.querySelector(".modal-confirmar");
 
+    function obterElementosFocaveis() {
+      return Array.from(
+        modal.querySelectorAll(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((elemento) => !elemento.hidden);
+    }
+
     function abrirModal() {
       modal.hidden = false;
       document.body.classList.add("modal-aberto");
 
-      if (botaoFechar) {
-        botaoFechar.focus();
-      }
+      const elementosFocaveis = obterElementosFocaveis();
+      elementosFocaveis[0]?.focus();
     }
 
     function fecharModal() {
       modal.hidden = true;
       document.body.classList.remove("modal-aberto");
       botaoAbrir.focus();
+    }
+
+    function controlarTeclado(evento) {
+      if (evento.key === "Escape") {
+        fecharModal();
+        return;
+      }
+
+      if (evento.key !== "Tab") return;
+
+      const elementosFocaveis = obterElementosFocaveis();
+
+      if (elementosFocaveis.length === 0) {
+        evento.preventDefault();
+        return;
+      }
+
+      const primeiroElemento = elementosFocaveis[0];
+      const ultimoElemento = elementosFocaveis[elementosFocaveis.length - 1];
+
+      if (evento.shiftKey && document.activeElement === primeiroElemento) {
+        evento.preventDefault();
+        ultimoElemento.focus();
+        return;
+      }
+
+      if (!evento.shiftKey && document.activeElement === ultimoElemento) {
+        evento.preventDefault();
+        primeiroElemento.focus();
+      }
     }
 
     botaoAbrir.addEventListener("click", abrirModal);
@@ -70,11 +143,7 @@ export function inicializarModais() {
       }
     });
 
-    modal.addEventListener("keydown", (evento) => {
-      if (evento.key === "Escape") {
-        fecharModal();
-      }
-    });
+    modal.addEventListener("keydown", controlarTeclado);
   });
 }
 
